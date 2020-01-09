@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.3.12
-Release: 18%{?dist}
+Release: 19%{?dist}
 # info pages are under GFDL license
 License: GPLv2+ and GFDL
 Group: Applications/File
@@ -23,6 +23,8 @@ Patch20: gzip-1.3.12-cve-2010-0001.patch
 Patch21: gzip-1.3.12-cve-2009-2624.patch
 Patch22: gzip-1.3.13-noemptysuffix.patch
 Patch23: gzip-1.3.13-crc-error.patch
+Patch24: gzip-nonblock.patch
+
 URL: http://www.gzip.org/
 Requires: /sbin/install-info
 Requires: mktemp less
@@ -57,6 +59,7 @@ very commonly used data compression program.
 # Fixed in upstream.
 %patch22 -p1 -b .noemptysuffix
 %patch23 -p1 -b .crc-error
+%patch24 -p1 -b .nonblock
 
 %build
 export DEFS="NO_ASM"
@@ -108,6 +111,10 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
+* Tue May 13 2013 Michal Luscon <mluscon@redhat.com> - 1.3.12-19
+- fix issue with nonblocking open for PAR and OFL files
+  Resolves: #915503
+  
 * Mon Jun 28 2010 Karel Klic <kklic@redhat.com> - 1.3.12-18
 - Added a patch to fix CRC error on valid file
   Resolves: #608787
