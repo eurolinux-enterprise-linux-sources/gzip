@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.3.12
-Release: 22%{?dist}
+Release: 24%{?dist}
 # info pages are under GFDL license
 License: GPLv2+ and GFDL
 Group: Applications/File
@@ -115,6 +115,10 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
+* Fri Sep 30 2016 Petr Stodulka <pstodulk@redhat.com> - 1.3.12-24
+- fix zforce
+  Resolves: #880084
+
 * Fri Feb 21 2014 Petr Stodulka <pstodulk@redhat.com> - 1.3.12-22
 - added option -h
   Resolves: #949820
@@ -127,10 +131,10 @@ fi
 - fix issue with nsec resolution
   Resolves: #961810
 
-* Tue May 13 2013 Michal Luscon <mluscon@redhat.com> - 1.3.12-19
+* Mon May 13 2013 Michal Luscon <mluscon@redhat.com> - 1.3.12-19
 - fix issue with nonblocking open for PAR and OFL files
   Resolves: #915503
-  
+
 * Mon Jun 28 2010 Karel Klic <kklic@redhat.com> - 1.3.12-18
 - Added a patch to fix CRC error on valid file
   Resolves: #608787
@@ -140,14 +144,14 @@ fi
   Resolves: #567586
 
 * Wed Jan 20 2010 Karel Klic <kklic@redhat.com> - 1.3.12-16
-- Improved the patch fixing CVE-2009-2624: get "Bad table" output 
+- Improved the patch fixing CVE-2009-2624: get "Bad table" output
   instead of "Unknown error" in gzip-1.3.12/unlzh.c:make_table()
   Related: rhbz#555090
 
 * Thu Jan 14 2010 Karel Klic <kklic@redhat.com> - 1.3.12-15
 - Added fix for CVE-2010-0001: (64 bit) Integer underflow by decompressing
   LZW format files
-- Added fix for CVE-2009-2624: Missing input sanitation by decompressing 
+- Added fix for CVE-2009-2624: Missing input sanitation by decompressing
   dynamic Huffman code blocks
   Resolves: rhbz#555090
 
