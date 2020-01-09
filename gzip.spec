@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.3.12
-Release: 19%{?dist}
+Release: 22%{?dist}
 # info pages are under GFDL license
 License: GPLv2+ and GFDL
 Group: Applications/File
@@ -24,6 +24,8 @@ Patch21: gzip-1.3.12-cve-2009-2624.patch
 Patch22: gzip-1.3.13-noemptysuffix.patch
 Patch23: gzip-1.3.13-crc-error.patch
 Patch24: gzip-nonblock.patch
+Patch25: gzip-1.3.12-nano-timestamp.patch
+Patch26: gzip-1.3.12-no-filename.patch
 
 URL: http://www.gzip.org/
 Requires: /sbin/install-info
@@ -60,6 +62,8 @@ very commonly used data compression program.
 %patch22 -p1 -b .noemptysuffix
 %patch23 -p1 -b .crc-error
 %patch24 -p1 -b .nonblock
+%patch25 -p1 -b .nano-timestamp
+%patch26 -p1 -b .no-filename
 
 %build
 export DEFS="NO_ASM"
@@ -111,6 +115,18 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
+* Fri Feb 21 2014 Petr Stodulka <pstodulk@redhat.com> - 1.3.12-22
+- added option -h
+  Resolves: #949820
+
+* Tue Feb 18 2014 Petr Stodulka <pstodulk@redhat.com> - 1.3.12-21
+- Previous patch was edited - removed unneeded pointer
+  Related: #961810
+
+* Thu Feb 13 2014 Petr Stodulka <pstodulk@redhat.com> - 1.3.12-20
+- fix issue with nsec resolution
+  Resolves: #961810
+
 * Tue May 13 2013 Michal Luscon <mluscon@redhat.com> - 1.3.12-19
 - fix issue with nonblocking open for PAR and OFL files
   Resolves: #915503
