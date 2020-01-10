@@ -1,0 +1,48 @@
+From a2c82475de5fb39e5e36586e664f7940e7daf48f Mon Sep 17 00:00:00 2001
+From: Paul Eggert <eggert@cs.ucla.edu>
+Date: Tue, 11 Jun 2013 19:43:21 -0700
+Subject: doc: zgrep exit status, unsupported options
+
+* zgrep.1 (EXIT STATUS, BUGS): New sections.
+Problem reported by Bdale Garbee in
+<http://lists.gnu.org/archive/html/bug-gzip/2013-06/msg00007.html>.
+---
+ zgrep.1 | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/zgrep.1 b/zgrep.1
+index ef37bd8..dfcf21e 100644
+--- a/zgrep.1
++++ b/zgrep.1
+@@ -23,6 +23,28 @@ If the GREP environment variable is set,
+ uses it as the
+ .I grep
+ program to be invoked.
++.SH "EXIT STATUS"
++Exit status is 0 for a match, 1 for no matches, and 2 if trouble.
++.SH BUGS
++.PP
++The following
++.I grep
++options are not supported:
++.B --dereference-recursive
++.RB ( \-R ),
++.B --directories
++.RB ( \-d ),
++.BR --exclude ,
++.BR --exclude-from ,
++.BR --exclude-dir ,
++.BR --include ,
++.B --null
++.RB ( \-Z ),
++.B --null-data
++.RB ( \-z ),
++and
++.B --recursive
++.RB ( \-r ).
+ .SH AUTHOR
+ Charles Levert (charles@comm.polymtl.ca)
+ .SH "SEE ALSO"
+-- 
+cgit v1.0-41-gc330
+
