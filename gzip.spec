@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.5
-Release: 7%{?dist}
+Release: 8%{?dist}
 # info pages are under GFDL license
 License: GPLv3+ and GFDL
 Group: Applications/File
@@ -14,6 +14,7 @@ Patch6: gzip-1.3.5-cve-2006-4338.patch
 Patch7: gzip-1.3.13-cve-2006-4337.patch
 Patch8: gzip-1.3.5-cve-2006-4337_len.patch
 Patch9: gzip-1.5-nonblock.patch
+Patch10: gzip-1.5-overwrite.patch
 # Fixed in upstream code.
 # http://thread.gmane.org/gmane.comp.gnu.gzip.bugs/378
 URL: http://www.gzip.org/
@@ -48,6 +49,7 @@ very commonly used data compression program.
 %patch7 -p1 -b .4337
 %patch8 -p1 -b .4337l
 %patch9 -p1 -b .nonblock
+%patch10 -p1 -b .overwrite
 
 %build
 export DEFS="NO_ASM"
@@ -88,6 +90,16 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
+* Mon Jul 27 2015 Scientific Linux Auto Patch Process <SCIENTIFIC-LINUX-DEVEL@LISTSERV.FNAL.GOV>
+- Eliminated rpmbuild "bogus date" error due to inconsistent weekday,
+  by assuming the date is correct and changing the weekday.
+
+* Mon Mar 16 2015 Petr Stodulka <pstodulk@redhat.com> - 1.5-8
+- Gzip overwrite existing files when user choose "no" on yes/no question.
+  It's due to wrong dupicit declaration of yesno() function in gzip.h
+  which is compiled wrong with -O2 option.
+  Resolves: rhbz#1201689
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.5-7
 - Mass rebuild 2014-01-24
 
