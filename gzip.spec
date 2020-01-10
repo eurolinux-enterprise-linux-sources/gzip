@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.5
-Release: 8%{?dist}
+Release: 9%{?dist}
 # info pages are under GFDL license
 License: GPLv3+ and GFDL
 Group: Applications/File
@@ -90,9 +90,9 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
-* Mon Jul 27 2015 Scientific Linux Auto Patch Process <SCIENTIFIC-LINUX-DEVEL@LISTSERV.FNAL.GOV>
-- Eliminated rpmbuild "bogus date" error due to inconsistent weekday,
-  by assuming the date is correct and changing the weekday.
+* Tue Feb 28 2017 Petr Stodulka <pstodulk@redhat.com> - 1.5-9
+- fix zfoce
+  Resolves: #1382054
 
 * Mon Mar 16 2015 Petr Stodulka <pstodulk@redhat.com> - 1.5-8
 - Gzip overwrite existing files when user choose "no" on yes/no question.
