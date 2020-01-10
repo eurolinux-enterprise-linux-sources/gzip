@@ -1,7 +1,7 @@
 Summary: The GNU data compression program
 Name: gzip
 Version: 1.5
-Release: 10%{?dist}
+Release: 4%{?dist}
 # info pages are under GFDL license
 License: GPLv3+ and GFDL
 Group: Applications/File
@@ -13,10 +13,6 @@ Patch5: gzip-1.3.9-addsuffix.patch
 Patch6: gzip-1.3.5-cve-2006-4338.patch
 Patch7: gzip-1.3.13-cve-2006-4337.patch
 Patch8: gzip-1.3.5-cve-2006-4337_len.patch
-Patch9: gzip-1.5-nonblock.patch
-Patch10: gzip-1.5-overwrite.patch
-Patch11: gzip-1.5-missing-grep-options-part1.patch
-Patch12: gzip-1.5-missing-grep-options-part2.patch
 # Fixed in upstream code.
 # http://thread.gmane.org/gmane.comp.gnu.gzip.bugs/378
 URL: http://www.gzip.org/
@@ -50,10 +46,6 @@ very commonly used data compression program.
 %patch6 -p1 -b .4338
 %patch7 -p1 -b .4337
 %patch8 -p1 -b .4337l
-%patch9 -p1 -b .nonblock
-%patch10 -p1 -b .overwrite
-%patch11 -p1 -b .options1
-%patch12 -p1 -b .options2
 
 %build
 export DEFS="NO_ASM"
@@ -94,31 +86,6 @@ fi
 %{_infodir}/gzip.info*
 
 %changelog
-* Mon Sep 11 2017 Jakub Martisko <jamartis@redhat.com> - 1.5-10
-- doc change: missing grep options are now mentioned in the zgrep 
-  man pages/help message
-  Resolves: #1437002
-
-* Tue Feb 28 2017 Petr Stodulka <pstodulk@redhat.com> - 1.5-9
-- fix zfoce
-  Resolves: #1382054
-
-* Mon Mar 16 2015 Petr Stodulka <pstodulk@redhat.com> - 1.5-8
-- Gzip overwrite existing files when user choose "no" on yes/no question.
-  It's due to wrong dupicit declaration of yesno() function in gzip.h
-  which is compiled wrong with -O2 option.
-  Resolves: rhbz#1201689
-
-* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.5-7
-- Mass rebuild 2014-01-24
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.5-6
-- Mass rebuild 2013-12-27
-
-* Fri Nov 15 2013 Petr Stodulka <pstodulk@redhat.com> - 1.5-5
-- fix issue with nonblocking open for PAR and OFL file
-  Resolves: rhbz#1028052
-
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.5-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
